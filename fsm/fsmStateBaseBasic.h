@@ -10,14 +10,14 @@
 
 namespace fsm
 {
-    template<typename Event>
+    template<typename event>
     class state_machine;
 }
 
 
 namespace fsm
 {
-    template<typename Event>
+    template<typename event>
     class state_base_basic
     {
         public:
@@ -26,18 +26,18 @@ namespace fsm
 
             virtual void on_entering();
             virtual void on_exiting();
-            virtual void on_event(Event const & event) = 0;
+            virtual void on_event(event const & event) = 0;
 
             int get_id() const;
 
-            void set_owner(state_machine<Event> & owner);
+            void set_owner(state_machine<event> & owner);
 
         protected:
-            state_machine<Event> & get_owner() const;
+            state_machine<event> & get_owner() const;
 
         private:
             int m_id;
-            state_machine<Event> * m_owner;
+            state_machine<event> * m_owner;
     };
 }
 
@@ -45,44 +45,44 @@ namespace fsm
 namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline state_base_basic<Event>::state_base_basic(int id)
+template<typename event>
+inline state_base_basic<event>::state_base_basic(int id)
   : m_id(id)
   , m_owner(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline state_base_basic<Event>::~state_base_basic()
+template<typename event>
+inline state_base_basic<event>::~state_base_basic()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_base_basic<Event>::on_entering()
+template<typename event>
+inline void state_base_basic<event>::on_entering()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_base_basic<Event>::on_exiting()
+template<typename event>
+inline void state_base_basic<event>::on_exiting()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline int state_base_basic<Event>::get_id() const
+template<typename event>
+inline int state_base_basic<event>::get_id() const
 {
     return m_id;
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_base_basic<Event>::set_owner(state_machine<Event> & owner)
+template<typename event>
+inline void state_base_basic<event>::set_owner(state_machine<event> & owner)
 {
     assert(m_owner == 0);
 
     m_owner = &owner;
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline state_machine<Event> & state_base_basic<Event>::get_owner() const
+template<typename event>
+inline state_machine<event> & state_base_basic<event>::get_owner() const
 {
     assert(m_owner != 0);
 

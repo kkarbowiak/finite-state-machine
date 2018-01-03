@@ -3,25 +3,25 @@
 
 namespace test
 {
-    class Event
+    class event
     {
         public:
-            explicit Event(int id);
-            Event(int id, int value);
+            explicit event(int id);
+            event(int id, int value);
 
             int get_id() const;
-            int getValue() const;
+            int get_value() const;
 
         private:
             int m_id;
-            int mValue;
+            int m_value;
     };
 }
 
 namespace test
 {
-    bool operator==(Event const & lhs, Event const & rhs);
-    bool operator!=(Event const & lhs, Event const & rhs);
+    bool operator==(event const & lhs, event const & rhs);
+    bool operator!=(event const & lhs, event const & rhs);
 }
 
 #endif /* TEST_EVENT_H__DDK */

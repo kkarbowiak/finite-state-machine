@@ -4,63 +4,63 @@
 namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
-BasicState::BasicState(int id)
-  : fsm::state_base_basic<test::Event>(id)
-  , mon_enteringCalls(0)
-  , mon_exitingCalls(0)
+basic_state::basic_state(int id)
+  : fsm::state_base_basic<test::event>(id)
+  , m_on_entering_calls(0)
+  , m_on_exiting_calls(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::on_entering()
+void basic_state::on_entering()
 {
-    ++mon_enteringCalls;
+    ++m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::on_exiting()
+void basic_state::on_exiting()
 {
-    ++mon_exitingCalls;
+    ++m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::on_event(test::Event const & event)
+void basic_state::on_event(test::event const & event)
 {
-    mEvents.push_back(event);
+    m_events.push_back(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wason_enteringCalled() const
+bool basic_state::was_on_entering_called() const
 {
-    return (mon_enteringCalls > 0);
+    return (m_on_entering_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wason_exitingCalled() const
+bool basic_state::was_on_exiting_called() const
 {
-    return (mon_exitingCalls > 0);
+    return (m_on_exiting_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wason_eventCalled() const
+bool basic_state::was_on_event_called() const
 {
-    return !mEvents.empty();
+    return !m_events.empty();
 }
 ////////////////////////////////////////////////////////////////////////////////
-int BasicState::geton_enteringCallCount() const
+int basic_state::get_on_entering_call_count() const
 {
-    return mon_enteringCalls;
+    return m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int BasicState::geton_exitingCallCount() const
+int basic_state::get_on_exiting_call_count() const
 {
-    return mon_exitingCalls;
+    return m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-BasicState::events_t const & BasicState::getEvents() const
+basic_state::events_t const & basic_state::get_events() const
 {
-    return mEvents;
+    return m_events;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::reset()
+void basic_state::reset()
 {
-    mon_enteringCalls = 0;
-    mon_exitingCalls = 0;
-    mEvents.clear();
+    m_on_entering_calls = 0;
+    m_on_exiting_calls = 0;
+    m_events.clear();
 }
 ////////////////////////////////////////////////////////////////////////////////
 }

@@ -10,40 +10,40 @@
 
 namespace test
 {
-    class State
-      : public fsm::state_base<test::EventBase>
+    class state
+      : public fsm::state_base<test::event_base>
     {
         public:
             typedef std::vector<int> events_t;
 
         public:
-            explicit State(int id);
+            explicit state(int id);
 
             virtual void on_entering();
             virtual void on_exiting();
 
-            virtual void on_event(test::EventBase const & event);
+            virtual void on_event(test::event_base const & event);
 
-            void on_eventBase(int value);
+            void on_event_base(int value);
 
-            using fsm::state_base<test::EventBase>::jump_to_state;
-            using fsm::state_base<test::EventBase>::jump_to_state_with_event;
+            using fsm::state_base<test::event_base>::jump_to_state;
+            using fsm::state_base<test::event_base>::jump_to_state_with_event;
 
-            bool wason_enteringCalled() const;
-            bool wason_exitingCalled() const;
-            bool wason_eventCalled() const;
+            bool was_on_entering_called() const;
+            bool was_on_exiting_called() const;
+            bool was_on_event_called() const;
 
-            int geton_enteringCallCount() const;
-            int geton_exitingCallCount() const;
+            int get_on_entering_call_count() const;
+            int get_on_exiting_call_count() const;
 
-            events_t const & getEvents() const;
+            events_t const & get_events() const;
 
             void reset();
 
         private:
-            events_t mEvents;
-            int mon_enteringCalls;
-            int mon_exitingCalls;
+            events_t m_events;
+            int m_on_entering_calls;
+            int m_on_exiting_calls;
     };
 }
 

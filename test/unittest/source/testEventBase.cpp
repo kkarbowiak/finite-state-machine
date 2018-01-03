@@ -5,41 +5,41 @@
 namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
-EventBase::EventBase(int id)
+event_base::event_base(int id)
   : m_id(id)
-  , mValue(0)
+  , m_value(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-EventBase::EventBase(int id, int value)
+event_base::event_base(int id, int value)
   : m_id(id)
-  , mValue(value)
+  , m_value(value)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-int EventBase::get_id() const
+int event_base::get_id() const
 {
     return m_id;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int EventBase::getValue() const
+int event_base::get_value() const
 {
-    return mValue;
+    return m_value;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void EventBase::forwardDataToState(State & state) const
+void event_base::forward_data_to_state(state & state) const
 {
-    state.on_eventBase(mValue);
+    state.on_event_base(m_value);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool operator==(EventBase const & lhs, EventBase const & rhs)
+bool operator==(event_base const & lhs, event_base const & rhs)
 {
     return (
         (lhs.get_id() == rhs.get_id()) &&
-        (lhs.getValue() == rhs.getValue()));
+        (lhs.get_value() == rhs.get_value()));
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool operator!=(EventBase const & lhs, EventBase const & rhs)
+bool operator!=(event_base const & lhs, event_base const & rhs)
 {
     return !(lhs == rhs);
 }
