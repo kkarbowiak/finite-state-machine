@@ -4,14 +4,6 @@
 
 #ifndef FSM_STATE_BASE_H__DDK
 #define FSM_STATE_BASE_H__DDK
-/**========================================================================== *\
- * File:        fsmStateBase.h
- *
- * Author:      Krzysztof Karbowiak
- *
- * Description: Definition of a base class for finite state machine's state
-\*=========================================================================== */
-
 
 #include "fsmStateBaseBasic.h"
 #include "fsmStateMachine.h"

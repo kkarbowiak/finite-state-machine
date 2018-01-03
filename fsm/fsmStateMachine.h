@@ -4,14 +4,6 @@
 
 #ifndef FSM_STATE_MACHINE_H__DDK
 #define FSM_STATE_MACHINE_H__DDK
-/**========================================================================== *\
- * File:        fsmStateMachine.h
- *
- * Author:      Krzysztof Karbowiak
- *
- * Description: Definition of a class representing finite state machine
-\*=========================================================================== */
-
 
 #include "fsmStateBaseBasic.h"
 

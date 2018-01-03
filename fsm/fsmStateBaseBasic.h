@@ -4,15 +4,6 @@
 
 #ifndef FSM_STATE_BASE_BASIC_H__DDK
 #define FSM_STATE_BASE_BASIC_H__DDK
-/**========================================================================== *\
- * File:        fsmStateBaseBasic.h
- *
- * Author:      Krzysztof Karbowiak
- *
- * Description: Definition of a basic base class for finite state machine's
- *              state
-\*=========================================================================== */
-
 
 #include <cstddef> // NULL
 #include <cassert>
