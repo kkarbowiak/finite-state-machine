@@ -7,7 +7,7 @@
 TEST_CASE("Tests state_base constructor", "[fsm][state_base][constructor]")
 {
     const int id = 10;
-    const test::State state(id);
+    const test::state state(id);
 
     REQUIRE(state.get_id() == id);
 }
@@ -16,9 +16,9 @@ TEST_CASE("Tests state_base::jump_to_state() function", "[fsm][state_base][jump_
 {
     const int id_one = 1;
     const int id_two = 2;
-    test::State state_one(id_one);
-    test::State state_two(id_two);
-    fsm::state_machine<test::EventBase> state_machine;
+    test::state state_one(id_one);
+    test::state state_two(id_two);
+    fsm::state_machine<test::event_base> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
@@ -30,13 +30,13 @@ TEST_CASE("Tests state_base::jump_to_state() function", "[fsm][state_base][jump_
         state_two.reset();
         state_machine.jump_to_state(state_one.get_id());
 
-        REQUIRE(state_one.wason_exitingCalled());
-        REQUIRE(state_one.wason_enteringCalled());
-        REQUIRE(!state_one.wason_eventCalled());
+        REQUIRE(state_one.was_on_exiting_called());
+        REQUIRE(state_one.was_on_entering_called());
+        REQUIRE(!state_one.was_on_event_called());
 
-        REQUIRE(!state_two.wason_enteringCalled());
-        REQUIRE(!state_two.wason_exitingCalled());
-        REQUIRE(!state_two.wason_eventCalled());
+        REQUIRE(!state_two.was_on_entering_called());
+        REQUIRE(!state_two.was_on_exiting_called());
+        REQUIRE(!state_two.was_on_event_called());
     }
 
     SECTION("Tests jumping to another state")
@@ -45,13 +45,13 @@ TEST_CASE("Tests state_base::jump_to_state() function", "[fsm][state_base][jump_
         state_two.reset();
         state_machine.jump_to_state(state_two.get_id());
 
-        REQUIRE(state_one.wason_exitingCalled());
-        REQUIRE(!state_one.wason_enteringCalled());
-        REQUIRE(!state_one.wason_eventCalled());
+        REQUIRE(state_one.was_on_exiting_called());
+        REQUIRE(!state_one.was_on_entering_called());
+        REQUIRE(!state_one.was_on_event_called());
 
-        REQUIRE(state_two.wason_enteringCalled());
-        REQUIRE(!state_two.wason_exitingCalled());
-        REQUIRE(!state_two.wason_eventCalled());
+        REQUIRE(state_two.was_on_entering_called());
+        REQUIRE(!state_two.was_on_exiting_called());
+        REQUIRE(!state_two.was_on_event_called());
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,16 +59,16 @@ TEST_CASE("Tests state_base::jump_to_state_with_event() function", "[fsm][state_
 {
     const int id_one = 1;
     const int id_two = 2;
-    test::State state_one(id_one);
-    test::State state_two(id_two);
-    fsm::state_machine<test::EventBase> state_machine;
+    test::state state_one(id_one);
+    test::state state_two(id_two);
+    fsm::state_machine<test::event_base> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
     state_machine.set_initial_state(state_one.get_id());
 
-    const test::EventBase event_one(10, 100);
-    const test::EventBase event_two(20, 200);
+    const test::event_base event_one(10, 100);
+    const test::event_base event_two(20, 200);
 
     SECTION("Tests jumping back to active state")
     {
@@ -76,15 +76,15 @@ TEST_CASE("Tests state_base::jump_to_state_with_event() function", "[fsm][state_
         state_two.reset();
         state_machine.jump_to_state_with_event(state_one.get_id(), event_one);
 
-        REQUIRE(state_one.wason_exitingCalled());
-        REQUIRE(state_one.wason_enteringCalled());
-        REQUIRE(state_one.wason_eventCalled());
-        REQUIRE(state_one.getEvents().size() == 1);
-        REQUIRE(state_one.getEvents().front() == event_one.getValue());
+        REQUIRE(state_one.was_on_exiting_called());
+        REQUIRE(state_one.was_on_entering_called());
+        REQUIRE(state_one.was_on_event_called());
+        REQUIRE(state_one.get_events().size() == 1);
+        REQUIRE(state_one.get_events().front() == event_one.get_value());
 
-        REQUIRE(!state_two.wason_enteringCalled());
-        REQUIRE(!state_two.wason_exitingCalled());
-        REQUIRE(!state_two.wason_eventCalled());
+        REQUIRE(!state_two.was_on_entering_called());
+        REQUIRE(!state_two.was_on_exiting_called());
+        REQUIRE(!state_two.was_on_event_called());
     }
 
     SECTION("Tests jumping to another state")
@@ -93,15 +93,15 @@ TEST_CASE("Tests state_base::jump_to_state_with_event() function", "[fsm][state_
         state_two.reset();
         state_machine.jump_to_state_with_event(state_two.get_id(), event_two);
 
-        REQUIRE(state_one.wason_exitingCalled());
-        REQUIRE(!state_one.wason_enteringCalled());
-        REQUIRE(!state_one.wason_eventCalled());
+        REQUIRE(state_one.was_on_exiting_called());
+        REQUIRE(!state_one.was_on_entering_called());
+        REQUIRE(!state_one.was_on_event_called());
 
-        REQUIRE(state_two.wason_enteringCalled());
-        REQUIRE(!state_two.wason_exitingCalled());
-        REQUIRE(state_two.wason_eventCalled());
-        REQUIRE(state_two.getEvents().size() == 1);
-        REQUIRE(state_two.getEvents().front() == event_two.getValue());
+        REQUIRE(state_two.was_on_entering_called());
+        REQUIRE(!state_two.was_on_exiting_called());
+        REQUIRE(state_two.was_on_event_called());
+        REQUIRE(state_two.get_events().size() == 1);
+        REQUIRE(state_two.get_events().front() == event_two.get_value());
     }
 }
 ////////////////////////////////////////////////////////////////////////////////

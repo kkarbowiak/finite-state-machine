@@ -11,16 +11,16 @@
 
 namespace fsm
 {
-    template<typename Event>
+    template<typename event>
     class state_base
-      : public state_base_basic<Event>
+      : public state_base_basic<event>
     {
         public:
             explicit state_base(int id);
 
         protected:
             void jump_to_state(int id) const;
-            void jump_to_state_with_event(int id, Event const & event) const;
+            void jump_to_state_with_event(int id, event const & event) const;
     };
 }
 
@@ -28,22 +28,22 @@ namespace fsm
 namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline state_base<Event>::state_base(int id)
-  : state_base_basic<Event>(id)
+template<typename event>
+inline state_base<event>::state_base(int id)
+  : state_base_basic<event>(id)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_base<Event>::jump_to_state(int id) const
+template<typename event>
+inline void state_base<event>::jump_to_state(int id) const
 {
-    state_base<Event>::get_owner().jump_to_state(id);
+    state_base<event>::get_owner().jump_to_state(id);
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_base<Event>::jump_to_state_with_event(int id, Event const & event) const
+template<typename event>
+inline void state_base<event>::jump_to_state_with_event(int id, event const & event) const
 {
-    state_base<Event>::get_owner().jump_to_state_with_event(id, event);
+    state_base<event>::get_owner().jump_to_state_with_event(id, event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
