@@ -18,7 +18,7 @@ TEST_CASE("Tests state_base::jumpToState() function", "[fsm][state_base][jumpToS
     const int id_two = 2;
     test::State state_one(id_one);
     test::State state_two(id_two);
-    fsm::StateMachine<test::EventBase> state_machine;
+    fsm::state_machine<test::EventBase> state_machine;
 
     state_machine.registerState(state_one);
     state_machine.registerState(state_two);
@@ -61,7 +61,7 @@ TEST_CASE("Tests state_base::jumpToStateWithEvent() function", "[fsm][state_base
     const int id_two = 2;
     test::State state_one(id_one);
     test::State state_two(id_two);
-    fsm::StateMachine<test::EventBase> state_machine;
+    fsm::state_machine<test::EventBase> state_machine;
 
     state_machine.registerState(state_one);
     state_machine.registerState(state_two);

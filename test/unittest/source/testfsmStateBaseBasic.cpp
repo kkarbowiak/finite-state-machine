@@ -27,7 +27,7 @@ TEST_CASE("Tests setOwner() function", "[fsm][state_base_basic][setOwner()]")
     const int id = 1;
     test::BasicState basic_state(id);
 
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     basic_state.setOwner(state_machine);
 
@@ -39,7 +39,7 @@ TEST_CASE("Tests getOwner() function", "[fsm][state_base_basic][getOwner()]")
     const int id = 1;
     test::BasicState basic_state(id);
 
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     basic_state.setOwner(state_machine);
 

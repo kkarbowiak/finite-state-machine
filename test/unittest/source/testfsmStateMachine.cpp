@@ -6,11 +6,11 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateMachine::registerState() function", "[fsm][StateMachine][registerState()]")
+TEST_CASE("Tests state_machine::registerState() function", "[fsm][state_machine][registerState()]")
 {
     const int id = 1;
     test::BasicState state(id);
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     state_machine.registerState(state);
 
@@ -19,13 +19,13 @@ TEST_CASE("Tests StateMachine::registerState() function", "[fsm][StateMachine][r
     REQUIRE(!state.wasOnEventCalled());
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateMachine::setInitialState() function", "[fsm][StateMachine][setInitialState()]")
+TEST_CASE("Tests state_machine::setInitialState() function", "[fsm][state_machine][setInitialState()]")
 {
     const int id_one = 1;
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     state_machine.registerState(state_one);
     state_machine.registerState(state_two);
@@ -40,13 +40,13 @@ TEST_CASE("Tests StateMachine::setInitialState() function", "[fsm][StateMachine]
     REQUIRE(!state_two.wasOnEventCalled());
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateMachine::jumpToState() function", "[fsm][StateMachine][jumpToState()]")
+TEST_CASE("Tests state_machine::jumpToState() function", "[fsm][state_machine][jumpToState()]")
 {
     const int id_one = 1;
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     state_machine.registerState(state_one);
     state_machine.registerState(state_two);
@@ -83,13 +83,13 @@ TEST_CASE("Tests StateMachine::jumpToState() function", "[fsm][StateMachine][jum
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateMachine::jumpToStateWithEvent() function", "[fsm][StateMachine][jumpToStateWithEvent()]")
+TEST_CASE("Tests state_machine::jumpToStateWithEvent() function", "[fsm][state_machine][jumpToStateWithEvent()]")
 {
     const int id_one = 1;
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     state_machine.registerState(state_one);
     state_machine.registerState(state_two);
@@ -133,11 +133,11 @@ TEST_CASE("Tests StateMachine::jumpToStateWithEvent() function", "[fsm][StateMac
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateMachine::handleEvent() function", "[fsm][StateMachine][handleEvent()]")
+TEST_CASE("Tests state_machine::handleEvent() function", "[fsm][state_machine][handleEvent()]")
 {
     const int id = 1;
     test::BasicState state(id);
-    fsm::StateMachine<test::Event> state_machine;
+    fsm::state_machine<test::Event> state_machine;
 
     state_machine.registerState(state);
     state_machine.setInitialState(state.getID());
