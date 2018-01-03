@@ -11,38 +11,38 @@ TEST_CASE("Tests state_base_basic constructor", "[fsm][state_base_basic][constru
     const int id = 10;
     const test::BasicState basic_state(id);
 
-    REQUIRE(basic_state.getID() == id);
+    REQUIRE(basic_state.get_id() == id);
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests getID() function", "[fsm][state_base_basic][getID()]")
+TEST_CASE("Tests get_id() function", "[fsm][state_base_basic][get_id()]")
 {
     const int id = 10;
     const test::BasicState basic_state(id);
 
-    REQUIRE(basic_state.getID() == id);
+    REQUIRE(basic_state.get_id() == id);
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests setOwner() function", "[fsm][state_base_basic][setOwner()]")
+TEST_CASE("Tests set_owner() function", "[fsm][state_base_basic][set_owner()]")
 {
     const int id = 1;
     test::BasicState basic_state(id);
 
     fsm::state_machine<test::Event> state_machine;
 
-    basic_state.setOwner(state_machine);
+    basic_state.set_owner(state_machine);
 
-    REQUIRE(&basic_state.getOwner() == &state_machine);
+    REQUIRE(&basic_state.get_owner() == &state_machine);
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests getOwner() function", "[fsm][state_base_basic][getOwner()]")
+TEST_CASE("Tests get_owner() function", "[fsm][state_base_basic][get_owner()]")
 {
     const int id = 1;
     test::BasicState basic_state(id);
 
     fsm::state_machine<test::Event> state_machine;
 
-    basic_state.setOwner(state_machine);
+    basic_state.set_owner(state_machine);
 
-    REQUIRE(&basic_state.getOwner() == &state_machine);
+    REQUIRE(&basic_state.get_owner() == &state_machine);
 }
 ////////////////////////////////////////////////////////////////////////////////

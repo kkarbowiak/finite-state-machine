@@ -6,54 +6,54 @@ namespace test
 ////////////////////////////////////////////////////////////////////////////////
 State::State(int id)
   : fsm::state_base<test::EventBase>(id)
-  , mOnEnteringCalls(0)
-  , mOnExitingCalls(0)
+  , mon_enteringCalls(0)
+  , mon_exitingCalls(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-void State::onEntering()
+void State::on_entering()
 {
-    ++mOnEnteringCalls;
+    ++mon_enteringCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void State::onExiting()
+void State::on_exiting()
 {
-    ++mOnExitingCalls;
+    ++mon_exitingCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void State::onEvent(test::EventBase const & event)
+void State::on_event(test::EventBase const & event)
 {
     event.forwardDataToState(*this);
 }
 ////////////////////////////////////////////////////////////////////////////////
-void State::onEventBase(int value)
+void State::on_eventBase(int value)
 {
     mEvents.push_back(value);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool State::wasOnEnteringCalled() const
+bool State::wason_enteringCalled() const
 {
-    return (mOnEnteringCalls > 0);
+    return (mon_enteringCalls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool State::wasOnExitingCalled() const
+bool State::wason_exitingCalled() const
 {
-    return (mOnExitingCalls > 0);
+    return (mon_exitingCalls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool State::wasOnEventCalled() const
+bool State::wason_eventCalled() const
 {
     return !mEvents.empty();
 }
 ////////////////////////////////////////////////////////////////////////////////
-int State::getOnEnteringCallCount() const
+int State::geton_enteringCallCount() const
 {
-    return mOnEnteringCalls;
+    return mon_enteringCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int State::getOnExitingCallCount() const
+int State::geton_exitingCallCount() const
 {
-    return mOnExitingCalls;
+    return mon_exitingCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
 State::events_t const & State::getEvents() const
@@ -63,8 +63,8 @@ State::events_t const & State::getEvents() const
 ////////////////////////////////////////////////////////////////////////////////
 void State::reset()
 {
-    mOnEnteringCalls = 0;
-    mOnExitingCalls = 0;
+    mon_enteringCalls = 0;
+    mon_exitingCalls = 0;
     mEvents.clear();
 }
 ////////////////////////////////////////////////////////////////////////////////
