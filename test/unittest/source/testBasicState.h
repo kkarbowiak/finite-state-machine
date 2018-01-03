@@ -11,7 +11,7 @@
 namespace test
 {
     class BasicState
-      : public fsm::StateBaseBasic<test::Event>
+      : public fsm::state_base_basic<test::Event>
     {
         public:
             typedef std::vector<test::Event> events_t;
@@ -24,7 +24,7 @@ namespace test
 
             virtual void onEvent(test::Event const & event);
 
-            using fsm::StateBaseBasic<test::Event>::getOwner;
+            using fsm::state_base_basic<test::Event>::getOwner;
 
             bool wasOnEnteringCalled() const;
             bool wasOnExitingCalled() const;

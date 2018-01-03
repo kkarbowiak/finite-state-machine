@@ -5,7 +5,7 @@ namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
 BasicState::BasicState(int id)
-  : fsm::StateBaseBasic<test::Event>(id)
+  : fsm::state_base_basic<test::Event>(id)
   , mOnEnteringCalls(0)
   , mOnExitingCalls(0)
 {
