@@ -1,3 +1,7 @@
+/*
+    Copyright 2018 Krzysztof Karbowiak
+*/
+
 #ifndef FSM_STATE_BASE_BASIC_H__DDK
 #define FSM_STATE_BASE_BASIC_H__DDK
 /**========================================================================== *\
