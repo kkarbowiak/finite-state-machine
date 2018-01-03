@@ -4,7 +4,7 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateBase constructor", "[fsm][StateBase][constructor]")
+TEST_CASE("Tests state_base constructor", "[fsm][state_base][constructor]")
 {
     const int id = 10;
     const test::State state(id);
@@ -12,7 +12,7 @@ TEST_CASE("Tests StateBase constructor", "[fsm][StateBase][constructor]")
     REQUIRE(state.getID() == id);
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateBase::jumpToState() function", "[fsm][StateBase][jumpToState()]")
+TEST_CASE("Tests state_base::jumpToState() function", "[fsm][state_base][jumpToState()]")
 {
     const int id_one = 1;
     const int id_two = 2;
@@ -55,7 +55,7 @@ TEST_CASE("Tests StateBase::jumpToState() function", "[fsm][StateBase][jumpToSta
     }
 }
 ////////////////////////////////////////////////////////////////////////////////
-TEST_CASE("Tests StateBase::jumpToStateWithEvent() function", "[fsm][StateBase][jumpToStateWithEvent()]")
+TEST_CASE("Tests state_base::jumpToStateWithEvent() function", "[fsm][state_base][jumpToStateWithEvent()]")
 {
     const int id_one = 1;
     const int id_two = 2;
