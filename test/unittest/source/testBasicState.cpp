@@ -6,49 +6,49 @@ namespace test
 ////////////////////////////////////////////////////////////////////////////////
 BasicState::BasicState(int id)
   : fsm::state_base_basic<test::Event>(id)
-  , mOnEnteringCalls(0)
-  , mOnExitingCalls(0)
+  , mon_enteringCalls(0)
+  , mon_exitingCalls(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::onEntering()
+void BasicState::on_entering()
 {
-    ++mOnEnteringCalls;
+    ++mon_enteringCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::onExiting()
+void BasicState::on_exiting()
 {
-    ++mOnExitingCalls;
+    ++mon_exitingCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void BasicState::onEvent(test::Event const & event)
+void BasicState::on_event(test::Event const & event)
 {
     mEvents.push_back(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wasOnEnteringCalled() const
+bool BasicState::wason_enteringCalled() const
 {
-    return (mOnEnteringCalls > 0);
+    return (mon_enteringCalls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wasOnExitingCalled() const
+bool BasicState::wason_exitingCalled() const
 {
-    return (mOnExitingCalls > 0);
+    return (mon_exitingCalls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool BasicState::wasOnEventCalled() const
+bool BasicState::wason_eventCalled() const
 {
     return !mEvents.empty();
 }
 ////////////////////////////////////////////////////////////////////////////////
-int BasicState::getOnEnteringCallCount() const
+int BasicState::geton_enteringCallCount() const
 {
-    return mOnEnteringCalls;
+    return mon_enteringCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int BasicState::getOnExitingCallCount() const
+int BasicState::geton_exitingCallCount() const
 {
-    return mOnExitingCalls;
+    return mon_exitingCalls;
 }
 ////////////////////////////////////////////////////////////////////////////////
 BasicState::events_t const & BasicState::getEvents() const
@@ -58,8 +58,8 @@ BasicState::events_t const & BasicState::getEvents() const
 ////////////////////////////////////////////////////////////////////////////////
 void BasicState::reset()
 {
-    mOnEnteringCalls = 0;
-    mOnExitingCalls = 0;
+    mon_enteringCalls = 0;
+    mon_exitingCalls = 0;
     mEvents.clear();
 }
 ////////////////////////////////////////////////////////////////////////////////

@@ -19,21 +19,21 @@ namespace fsm
         public:
             state_machine();
 
-            void registerState(state_base_basic<Event> & state);
+            void register_state(state_base_basic<Event> & state);
 
-            void setInitialState(int id);
+            void set_initial_state(int id);
 
-            void jumpToState(int id);
-            void jumpToStateWithEvent(int id, Event const & event);
+            void jump_to_state(int id);
+            void jump_to_state_with_event(int id, Event const & event);
 
-            void handleEvent(Event const & event);
-
-        private:
-            typedef std::map<int, state_base_basic<Event> *> StatesMap;
+            void handle_event(Event const & event);
 
         private:
-            StatesMap mStatesMap;
-            state_base_basic<Event> * mActiveState;
+            typedef std::map<int, state_base_basic<Event> *> states_map;
+
+        private:
+            states_map m_states_map;
+            state_base_basic<Event> * m_active_state;
     };
 }
 
@@ -43,59 +43,59 @@ namespace fsm
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
 inline state_machine<Event>::state_machine()
-  : mActiveState(0)
+  : m_active_state(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_machine<Event>::registerState(state_base_basic<Event> & state)
+inline void state_machine<Event>::register_state(state_base_basic<Event> & state)
 {
-    int state_id = state.getID();
+    int state_id = state.get_id();
 
-    assert(mStatesMap.find(state_id) == mStatesMap.end());
+    assert(m_states_map.find(state_id) == m_states_map.end());
 
-    mStatesMap[state_id] = &state;
-    state.setOwner(*this);
+    m_states_map[state_id] = &state;
+    state.set_owner(*this);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_machine<Event>::setInitialState(int id)
+inline void state_machine<Event>::set_initial_state(int id)
 {
-    assert(mActiveState == 0);
+    assert(m_active_state == 0);
 
-    typename StatesMap::iterator it = mStatesMap.find(id);
-    assert(it != mStatesMap.end());
+    typename states_map::iterator it = m_states_map.find(id);
+    assert(it != m_states_map.end());
 
-    mActiveState = it->second;
-    mActiveState->onEntering();
+    m_active_state = it->second;
+    m_active_state->on_entering();
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_machine<Event>::jumpToState(int id)
+inline void state_machine<Event>::jump_to_state(int id)
 {
-    assert(mActiveState != 0);
+    assert(m_active_state != 0);
 
-    typename StatesMap::iterator it = mStatesMap.find(id);
-    assert(it != mStatesMap.end());
+    typename states_map::iterator it = m_states_map.find(id);
+    assert(it != m_states_map.end());
 
-    mActiveState->onExiting();
-    mActiveState = it->second;
-    mActiveState->onEntering();
+    m_active_state->on_exiting();
+    m_active_state = it->second;
+    m_active_state->on_entering();
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_machine<Event>::jumpToStateWithEvent(int id, Event const & event)
+inline void state_machine<Event>::jump_to_state_with_event(int id, Event const & event)
 {
-    jumpToState(id);
-    handleEvent(event);
+    jump_to_state(id);
+    handle_event(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_machine<Event>::handleEvent(Event const & event)
+inline void state_machine<Event>::handle_event(Event const & event)
 {
-    assert(mActiveState != 0);
+    assert(m_active_state != 0);
 
-    mActiveState->onEvent(event);
+    m_active_state->on_event(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }

@@ -11,13 +11,13 @@ namespace test
             explicit EventBase(int id);
             EventBase(int id, int value);
 
-            int getID() const;
+            int get_id() const;
             int getValue() const;
 
             void forwardDataToState(State & state) const;
 
         private:
-            int mID;
+            int m_id;
             int mValue;
     };
 }

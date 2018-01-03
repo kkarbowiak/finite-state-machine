@@ -9,11 +9,11 @@ namespace test
             explicit Event(int id);
             Event(int id, int value);
 
-            int getID() const;
+            int get_id() const;
             int getValue() const;
 
         private:
-            int mID;
+            int m_id;
             int mValue;
     };
 }

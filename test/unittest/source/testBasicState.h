@@ -19,19 +19,19 @@ namespace test
         public:
             explicit BasicState(int id);
 
-            virtual void onEntering();
-            virtual void onExiting();
+            virtual void on_entering();
+            virtual void on_exiting();
 
-            virtual void onEvent(test::Event const & event);
+            virtual void on_event(test::Event const & event);
 
-            using fsm::state_base_basic<test::Event>::getOwner;
+            using fsm::state_base_basic<test::Event>::get_owner;
 
-            bool wasOnEnteringCalled() const;
-            bool wasOnExitingCalled() const;
-            bool wasOnEventCalled() const;
+            bool wason_enteringCalled() const;
+            bool wason_exitingCalled() const;
+            bool wason_eventCalled() const;
 
-            int getOnEnteringCallCount() const;
-            int getOnExitingCallCount() const;
+            int geton_enteringCallCount() const;
+            int geton_exitingCallCount() const;
 
             events_t const & getEvents() const;
 
@@ -39,8 +39,8 @@ namespace test
 
         private:
             events_t mEvents;
-            int mOnEnteringCalls;
-            int mOnExitingCalls;
+            int mon_enteringCalls;
+            int mon_exitingCalls;
     };
 }
 

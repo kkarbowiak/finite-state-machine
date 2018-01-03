@@ -19,8 +19,8 @@ namespace fsm
             explicit state_base(int id);
 
         protected:
-            void jumpToState(int id) const;
-            void jumpToStateWithEvent(int id, Event const & event) const;
+            void jump_to_state(int id) const;
+            void jump_to_state_with_event(int id, Event const & event) const;
     };
 }
 
@@ -35,15 +35,15 @@ inline state_base<Event>::state_base(int id)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_base<Event>::jumpToState(int id) const
+inline void state_base<Event>::jump_to_state(int id) const
 {
-    state_base<Event>::getOwner().jumpToState(id);
+    state_base<Event>::get_owner().jump_to_state(id);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_base<Event>::jumpToStateWithEvent(int id, Event const & event) const
+inline void state_base<Event>::jump_to_state_with_event(int id, Event const & event) const
 {
-    state_base<Event>::getOwner().jumpToStateWithEvent(id, event);
+    state_base<Event>::get_owner().jump_to_state_with_event(id, event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
