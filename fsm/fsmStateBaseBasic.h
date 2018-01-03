@@ -5,7 +5,6 @@
 #ifndef FSM_STATE_BASE_BASIC_H__DDK
 #define FSM_STATE_BASE_BASIC_H__DDK
 
-#include <cstddef> // NULL
 #include <cassert>
 
 
@@ -49,7 +48,7 @@ namespace fsm
 template<typename Event>
 inline StateBaseBasic<Event>::StateBaseBasic(int id)
   : mID(id)
-  , mOwner(NULL)
+  , mOwner(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -77,7 +76,7 @@ inline int StateBaseBasic<Event>::getID() const
 template<typename Event>
 inline void StateBaseBasic<Event>::setOwner(StateMachine<Event> & owner)
 {
-    assert(mOwner == NULL);
+    assert(mOwner == 0);
 
     mOwner = &owner;
 }
@@ -85,7 +84,7 @@ inline void StateBaseBasic<Event>::setOwner(StateMachine<Event> & owner)
 template<typename Event>
 inline StateMachine<Event> & StateBaseBasic<Event>::getOwner() const
 {
-    assert(mOwner != NULL);
+    assert(mOwner != 0);
 
     return *mOwner;
 }

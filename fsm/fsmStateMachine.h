@@ -8,7 +8,6 @@
 #include "fsmStateBaseBasic.h"
 
 #include <map>
-#include <cstddef> // NULL
 #include <cassert>
 
 
@@ -44,7 +43,7 @@ namespace fsm
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
 inline StateMachine<Event>::StateMachine()
-  : mActiveState(NULL)
+  : mActiveState(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +61,7 @@ inline void StateMachine<Event>::registerState(StateBaseBasic<Event> & state)
 template<typename Event>
 inline void StateMachine<Event>::setInitialState(int id)
 {
-    assert(mActiveState == NULL);
+    assert(mActiveState == 0);
 
     typename StatesMap::iterator it = mStatesMap.find(id);
     assert(it != mStatesMap.end());
@@ -74,7 +73,7 @@ inline void StateMachine<Event>::setInitialState(int id)
 template<typename Event>
 inline void StateMachine<Event>::jumpToState(int id)
 {
-    assert(mActiveState != NULL);
+    assert(mActiveState != 0);
 
     typename StatesMap::iterator it = mStatesMap.find(id);
     assert(it != mStatesMap.end());
@@ -94,7 +93,7 @@ inline void StateMachine<Event>::jumpToStateWithEvent(int id, Event const & even
 template<typename Event>
 inline void StateMachine<Event>::handleEvent(Event const & event)
 {
-    assert(mActiveState != NULL);
+    assert(mActiveState != 0);
 
     mActiveState->onEvent(event);
 }
