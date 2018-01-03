@@ -12,11 +12,11 @@
 namespace fsm
 {
     template<typename Event>
-    class StateBase
+    class state_base
       : public state_base_basic<Event>
     {
         public:
-            explicit StateBase(int id);
+            explicit state_base(int id);
 
         protected:
             void jumpToState(int id) const;
@@ -29,21 +29,21 @@ namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateBase<Event>::StateBase(int id)
+inline state_base<Event>::state_base(int id)
   : state_base_basic<Event>(id)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateBase<Event>::jumpToState(int id) const
+inline void state_base<Event>::jumpToState(int id) const
 {
-    StateBase<Event>::getOwner().jumpToState(id);
+    state_base<Event>::getOwner().jumpToState(id);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateBase<Event>::jumpToStateWithEvent(int id, Event const & event) const
+inline void state_base<Event>::jumpToStateWithEvent(int id, Event const & event) const
 {
-    StateBase<Event>::getOwner().jumpToStateWithEvent(id, event);
+    state_base<Event>::getOwner().jumpToStateWithEvent(id, event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
