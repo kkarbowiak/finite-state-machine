@@ -14,10 +14,10 @@
 namespace fsm
 {
     template<typename Event>
-    class StateMachine
+    class state_machine
     {
         public:
-            StateMachine();
+            state_machine();
 
             void registerState(state_base_basic<Event> & state);
 
@@ -42,13 +42,13 @@ namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateMachine<Event>::StateMachine()
+inline state_machine<Event>::state_machine()
   : mActiveState(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::registerState(state_base_basic<Event> & state)
+inline void state_machine<Event>::registerState(state_base_basic<Event> & state)
 {
     int state_id = state.getID();
 
@@ -59,7 +59,7 @@ inline void StateMachine<Event>::registerState(state_base_basic<Event> & state)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::setInitialState(int id)
+inline void state_machine<Event>::setInitialState(int id)
 {
     assert(mActiveState == 0);
 
@@ -71,7 +71,7 @@ inline void StateMachine<Event>::setInitialState(int id)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::jumpToState(int id)
+inline void state_machine<Event>::jumpToState(int id)
 {
     assert(mActiveState != 0);
 
@@ -84,14 +84,14 @@ inline void StateMachine<Event>::jumpToState(int id)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::jumpToStateWithEvent(int id, Event const & event)
+inline void state_machine<Event>::jumpToStateWithEvent(int id, Event const & event)
 {
     jumpToState(id);
     handleEvent(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::handleEvent(Event const & event)
+inline void state_machine<Event>::handleEvent(Event const & event)
 {
     assert(mActiveState != 0);
 

@@ -11,7 +11,7 @@
 namespace fsm
 {
     template<typename Event>
-    class StateMachine;
+    class state_machine;
 }
 
 
@@ -30,14 +30,14 @@ namespace fsm
 
             int getID() const;
 
-            void setOwner(StateMachine<Event> & owner);
+            void setOwner(state_machine<Event> & owner);
 
         protected:
-            StateMachine<Event> & getOwner() const;
+            state_machine<Event> & getOwner() const;
 
         private:
             int mID;
-            StateMachine<Event> * mOwner;
+            state_machine<Event> * mOwner;
     };
 }
 
@@ -74,7 +74,7 @@ inline int state_base_basic<Event>::getID() const
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void state_base_basic<Event>::setOwner(StateMachine<Event> & owner)
+inline void state_base_basic<Event>::setOwner(state_machine<Event> & owner)
 {
     assert(mOwner == 0);
 
@@ -82,7 +82,7 @@ inline void state_base_basic<Event>::setOwner(StateMachine<Event> & owner)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateMachine<Event> & state_base_basic<Event>::getOwner() const
+inline state_machine<Event> & state_base_basic<Event>::getOwner() const
 {
     assert(mOwner != 0);
 
