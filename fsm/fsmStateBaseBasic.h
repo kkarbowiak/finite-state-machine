@@ -18,11 +18,11 @@ namespace fsm
 namespace fsm
 {
     template<typename Event>
-    class StateBaseBasic
+    class state_base_basic
     {
         public:
-            explicit StateBaseBasic(int id);
-            virtual ~StateBaseBasic();
+            explicit state_base_basic(int id);
+            virtual ~state_base_basic();
 
             virtual void onEntering();
             virtual void onExiting();
@@ -46,35 +46,35 @@ namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateBaseBasic<Event>::StateBaseBasic(int id)
+inline state_base_basic<Event>::state_base_basic(int id)
   : mID(id)
   , mOwner(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateBaseBasic<Event>::~StateBaseBasic()
+inline state_base_basic<Event>::~state_base_basic()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateBaseBasic<Event>::onEntering()
+inline void state_base_basic<Event>::onEntering()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateBaseBasic<Event>::onExiting()
+inline void state_base_basic<Event>::onExiting()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline int StateBaseBasic<Event>::getID() const
+inline int state_base_basic<Event>::getID() const
 {
     return mID;
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateBaseBasic<Event>::setOwner(StateMachine<Event> & owner)
+inline void state_base_basic<Event>::setOwner(StateMachine<Event> & owner)
 {
     assert(mOwner == 0);
 
@@ -82,7 +82,7 @@ inline void StateBaseBasic<Event>::setOwner(StateMachine<Event> & owner)
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline StateMachine<Event> & StateBaseBasic<Event>::getOwner() const
+inline StateMachine<Event> & state_base_basic<Event>::getOwner() const
 {
     assert(mOwner != 0);
 

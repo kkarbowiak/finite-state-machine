@@ -19,7 +19,7 @@ namespace fsm
         public:
             StateMachine();
 
-            void registerState(StateBaseBasic<Event> & state);
+            void registerState(state_base_basic<Event> & state);
 
             void setInitialState(int id);
 
@@ -29,11 +29,11 @@ namespace fsm
             void handleEvent(Event const & event);
 
         private:
-            typedef std::map<int, StateBaseBasic<Event> *> StatesMap;
+            typedef std::map<int, state_base_basic<Event> *> StatesMap;
 
         private:
             StatesMap mStatesMap;
-            StateBaseBasic<Event> * mActiveState;
+            state_base_basic<Event> * mActiveState;
     };
 }
 
@@ -48,7 +48,7 @@ inline StateMachine<Event>::StateMachine()
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
-inline void StateMachine<Event>::registerState(StateBaseBasic<Event> & state)
+inline void StateMachine<Event>::registerState(state_base_basic<Event> & state)
 {
     int state_id = state.getID();
 

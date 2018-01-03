@@ -13,7 +13,7 @@ namespace fsm
 {
     template<typename Event>
     class StateBase
-      : public StateBaseBasic<Event>
+      : public state_base_basic<Event>
     {
         public:
             explicit StateBase(int id);
@@ -30,7 +30,7 @@ namespace fsm
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event>
 inline StateBase<Event>::StateBase(int id)
-  : StateBaseBasic<Event>(id)
+  : state_base_basic<Event>(id)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
