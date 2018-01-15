@@ -4,59 +4,59 @@
 namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
-basic_state::basic_state(int id)
-  : fsm::state_base_basic<test::event>(id)
+BasicState::BasicState(int id)
+  : fsm::state_base_basic<test::Event>(id)
   , m_on_entering_calls(0)
   , m_on_exiting_calls(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-void basic_state::on_entering()
+void BasicState::on_entering()
 {
     ++m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void basic_state::on_exiting()
+void BasicState::on_exiting()
 {
     ++m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void basic_state::on_event(test::event const & event)
+void BasicState::on_event(test::Event const & event)
 {
     m_events.push_back(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool basic_state::was_on_entering_called() const
+bool BasicState::was_on_entering_called() const
 {
     return (m_on_entering_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool basic_state::was_on_exiting_called() const
+bool BasicState::was_on_exiting_called() const
 {
     return (m_on_exiting_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool basic_state::was_on_event_called() const
+bool BasicState::was_on_event_called() const
 {
     return !m_events.empty();
 }
 ////////////////////////////////////////////////////////////////////////////////
-int basic_state::get_on_entering_call_count() const
+int BasicState::get_on_entering_call_count() const
 {
     return m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int basic_state::get_on_exiting_call_count() const
+int BasicState::get_on_exiting_call_count() const
 {
     return m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-basic_state::events_t const & basic_state::get_events() const
+BasicState::events_t const & BasicState::get_events() const
 {
     return m_events;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void basic_state::reset()
+void BasicState::reset()
 {
     m_on_entering_calls = 0;
     m_on_exiting_calls = 0;

@@ -4,36 +4,36 @@
 namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
-event::event(int id)
+Event::Event(int id)
   : m_id(id)
   , m_value(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-event::event(int id, int value)
+Event::Event(int id, int value)
   : m_id(id)
   , m_value(value)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-int event::get_id() const
+int Event::get_id() const
 {
     return m_id;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int event::get_value() const
+int Event::get_value() const
 {
     return m_value;
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool operator==(event const & lhs, event const & rhs)
+bool operator==(Event const & lhs, Event const & rhs)
 {
     return (
         (lhs.get_id() == rhs.get_id()) &&
         (lhs.get_value() == rhs.get_value()));
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool operator!=(event const & lhs, event const & rhs)
+bool operator!=(Event const & lhs, Event const & rhs)
 {
     return !(lhs == rhs);
 }

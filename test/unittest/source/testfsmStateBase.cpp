@@ -7,7 +7,7 @@
 TEST_CASE("Tests state_base constructor", "[fsm][state_base][constructor]")
 {
     const int id = 10;
-    const test::state state(id);
+    const test::State state(id);
 
     REQUIRE(state.get_id() == id);
 }
@@ -16,9 +16,9 @@ TEST_CASE("Tests state_base::jump_to_state() function", "[fsm][state_base][jump_
 {
     const int id_one = 1;
     const int id_two = 2;
-    test::state state_one(id_one);
-    test::state state_two(id_two);
-    fsm::state_machine<test::event_base> state_machine;
+    test::State state_one(id_one);
+    test::State state_two(id_two);
+    fsm::state_machine<test::EventBase> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
@@ -59,16 +59,16 @@ TEST_CASE("Tests state_base::jump_to_state_with_event() function", "[fsm][state_
 {
     const int id_one = 1;
     const int id_two = 2;
-    test::state state_one(id_one);
-    test::state state_two(id_two);
-    fsm::state_machine<test::event_base> state_machine;
+    test::State state_one(id_one);
+    test::State state_two(id_two);
+    fsm::state_machine<test::EventBase> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
     state_machine.set_initial_state(state_one.get_id());
 
-    const test::event_base event_one(10, 100);
-    const test::event_base event_two(20, 200);
+    const test::EventBase event_one(10, 100);
+    const test::EventBase event_two(20, 200);
 
     SECTION("Tests jumping back to active state")
     {
