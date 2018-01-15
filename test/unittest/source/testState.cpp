@@ -4,64 +4,64 @@
 namespace test
 {
 ////////////////////////////////////////////////////////////////////////////////
-state::state(int id)
-  : fsm::state_base<test::event_base>(id)
+State::State(int id)
+  : fsm::state_base<test::EventBase>(id)
   , m_on_entering_calls(0)
   , m_on_exiting_calls(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-void state::on_entering()
+void State::on_entering()
 {
     ++m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void state::on_exiting()
+void State::on_exiting()
 {
     ++m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void state::on_event(test::event_base const & event)
+void State::on_event(test::EventBase const & event)
 {
     event.forward_data_to_state(*this);
 }
 ////////////////////////////////////////////////////////////////////////////////
-void state::on_event_base(int value)
+void State::on_event_base(int value)
 {
     m_events.push_back(value);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool state::was_on_entering_called() const
+bool State::was_on_entering_called() const
 {
     return (m_on_entering_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool state::was_on_exiting_called() const
+bool State::was_on_exiting_called() const
 {
     return (m_on_exiting_calls > 0);
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool state::was_on_event_called() const
+bool State::was_on_event_called() const
 {
     return !m_events.empty();
 }
 ////////////////////////////////////////////////////////////////////////////////
-int state::get_on_entering_call_count() const
+int State::get_on_entering_call_count() const
 {
     return m_on_entering_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int state::get_on_exiting_call_count() const
+int State::get_on_exiting_call_count() const
 {
     return m_on_exiting_calls;
 }
 ////////////////////////////////////////////////////////////////////////////////
-state::events_t const & state::get_events() const
+State::events_t const & State::get_events() const
 {
     return m_events;
 }
 ////////////////////////////////////////////////////////////////////////////////
-void state::reset()
+void State::reset()
 {
     m_on_entering_calls = 0;
     m_on_exiting_calls = 0;

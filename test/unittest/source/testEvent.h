@@ -3,11 +3,11 @@
 
 namespace test
 {
-    class event
+    class Event
     {
         public:
-            explicit event(int id);
-            event(int id, int value);
+            explicit Event(int id);
+            Event(int id, int value);
 
             int get_id() const;
             int get_value() const;
@@ -20,8 +20,8 @@ namespace test
 
 namespace test
 {
-    bool operator==(event const & lhs, event const & rhs);
-    bool operator!=(event const & lhs, event const & rhs);
+    bool operator==(Event const & lhs, Event const & rhs);
+    bool operator!=(Event const & lhs, Event const & rhs);
 }
 
 #endif /* TEST_EVENT_H__DDK */

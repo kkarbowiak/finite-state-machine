@@ -10,24 +10,24 @@
 
 namespace test
 {
-    class state
-      : public fsm::state_base<test::event_base>
+    class State
+      : public fsm::state_base<test::EventBase>
     {
         public:
             typedef std::vector<int> events_t;
 
         public:
-            explicit state(int id);
+            explicit State(int id);
 
             virtual void on_entering();
             virtual void on_exiting();
 
-            virtual void on_event(test::event_base const & event);
+            virtual void on_event(test::EventBase const & event);
 
             void on_event_base(int value);
 
-            using fsm::state_base<test::event_base>::jump_to_state;
-            using fsm::state_base<test::event_base>::jump_to_state_with_event;
+            using fsm::state_base<test::EventBase>::jump_to_state;
+            using fsm::state_base<test::EventBase>::jump_to_state_with_event;
 
             bool was_on_entering_called() const;
             bool was_on_exiting_called() const;

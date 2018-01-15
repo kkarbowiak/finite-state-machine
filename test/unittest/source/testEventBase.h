@@ -1,20 +1,20 @@
 #ifndef TEST_EVENT_BASE_H__DDK
 #define TEST_EVENT_BASE_H__DDK
 
-namespace test { class state; }
+namespace test { class State; }
 
 namespace test
 {
-    class event_base
+    class EventBase
     {
         public:
-            explicit event_base(int id);
-            event_base(int id, int value);
+            explicit EventBase(int id);
+            EventBase(int id, int value);
 
             int get_id() const;
             int get_value() const;
 
-            void forward_data_to_state(state & state) const;
+            void forward_data_to_state(State & state) const;
 
         private:
             int m_id;
@@ -24,8 +24,8 @@ namespace test
 
 namespace test
 {
-    bool operator==(event_base const & lhs, event_base const & rhs);
-    bool operator!=(event_base const & lhs, event_base const & rhs);
+    bool operator==(EventBase const & lhs, EventBase const & rhs);
+    bool operator!=(EventBase const & lhs, EventBase const & rhs);
 }
 
 #endif /* TEST_EVENT_BASE_H__DDK */

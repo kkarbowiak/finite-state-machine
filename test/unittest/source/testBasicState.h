@@ -10,21 +10,21 @@
 
 namespace test
 {
-    class basic_state
-      : public fsm::state_base_basic<test::event>
+    class BasicState
+      : public fsm::state_base_basic<test::Event>
     {
         public:
-            typedef std::vector<test::event> events_t;
+            typedef std::vector<test::Event> events_t;
 
         public:
-            explicit basic_state(int id);
+            explicit BasicState(int id);
 
             virtual void on_entering();
             virtual void on_exiting();
 
-            virtual void on_event(test::event const & event);
+            virtual void on_event(test::Event const & event);
 
-            using fsm::state_base_basic<test::event>::get_owner;
+            using fsm::state_base_basic<test::Event>::get_owner;
 
             bool was_on_entering_called() const;
             bool was_on_exiting_called() const;
