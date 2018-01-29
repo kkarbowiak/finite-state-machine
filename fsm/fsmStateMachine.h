@@ -13,27 +13,27 @@
 
 namespace fsm
 {
-    template<typename Event>
+    template<typename Event, typename Id = int>
     class state_machine
     {
         public:
             state_machine();
 
-            void register_state(state_base_basic<Event> & state);
+            void register_state(state_base_basic<Event, Id> & state);
 
-            void set_initial_state(int id);
+            void set_initial_state(Id id);
 
-            void jump_to_state(int id);
-            void jump_to_state_with_event(int id, Event const & event);
+            void jump_to_state(Id id);
+            void jump_to_state_with_event(Id id, Event const & event);
 
             void handle_event(Event const & event);
 
         private:
-            typedef std::map<int, state_base_basic<Event> *> states_map;
+            typedef std::map<Id, state_base_basic<Event, Id> *> states_map;
 
         private:
             states_map m_states_map;
-            state_base_basic<Event> * m_active_state;
+            state_base_basic<Event, Id> * m_active_state;
     };
 }
 
@@ -41,16 +41,16 @@ namespace fsm
 namespace fsm
 {
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline state_machine<Event>::state_machine()
+template<typename Event, typename Id>
+inline state_machine<Event, Id>::state_machine()
   : m_active_state(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_machine<Event>::register_state(state_base_basic<Event> & state)
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::register_state(state_base_basic<Event, Id> & state)
 {
-    int state_id = state.get_id();
+    Id state_id = state.get_id();
 
     assert(m_states_map.find(state_id) == m_states_map.end());
 
@@ -58,8 +58,8 @@ inline void state_machine<Event>::register_state(state_base_basic<Event> & state
     state.set_owner(*this);
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_machine<Event>::set_initial_state(int id)
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::set_initial_state(Id id)
 {
     assert(m_active_state == 0);
 
@@ -70,8 +70,8 @@ inline void state_machine<Event>::set_initial_state(int id)
     m_active_state->on_entering();
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_machine<Event>::jump_to_state(int id)
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::jump_to_state(Id id)
 {
     assert(m_active_state != 0);
 
@@ -83,15 +83,15 @@ inline void state_machine<Event>::jump_to_state(int id)
     m_active_state->on_entering();
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_machine<Event>::jump_to_state_with_event(int id, Event const & event)
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::jump_to_state_with_event(Id id, Event const & event)
 {
     jump_to_state(id);
     handle_event(event);
 }
 ////////////////////////////////////////////////////////////////////////////////
-template<typename Event>
-inline void state_machine<Event>::handle_event(Event const & event)
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::handle_event(Event const & event)
 {
     assert(m_active_state != 0);
 
