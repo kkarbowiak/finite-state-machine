@@ -1,7 +1,7 @@
 #ifndef STATE_BASE_H__DDK
 #define STATE_BASE_H__DDK
 
-#include "fsm/fsmStateBase.h"
+#include "fsm/fsmStateMachine.h"
 
 #include "testEventBase.h"
 
@@ -11,7 +11,7 @@
 namespace test
 {
     class State
-      : public fsm::state_base<test::EventBase, int>
+      : public fsm::state_machine<test::EventBase, int>::state_base
     {
         public:
             typedef std::vector<int> events_t;
@@ -26,8 +26,8 @@ namespace test
 
             void on_event_base(int value);
 
-            using fsm::state_base<test::EventBase, int>::jump_to_state;
-            using fsm::state_base<test::EventBase, int>::jump_to_state_with_event;
+            using fsm::state_machine<test::EventBase, int>::state_base::jump_to_state;
+            using fsm::state_machine<test::EventBase, int>::state_base::jump_to_state_with_event;
 
             bool was_on_entering_called() const;
             bool was_on_exiting_called() const;

@@ -37,6 +37,17 @@ namespace fsm
                     state_machine * m_owner;
             };
 
+            class state_base
+                : public state_base_basic
+            {
+                public:
+                    explicit state_base(Id id);
+
+                protected:
+                    void jump_to_state(Id id) const;
+                    void jump_to_state_with_event(Id id, Event const & event) const;
+            };
+
         public:
             state_machine();
 
@@ -104,6 +115,29 @@ inline state_machine<Event, Id> & state_machine<Event, Id>::state_base_basic::ge
     assert(m_owner != 0);
 
     return *m_owner;
+}
+////////////////////////////////////////////////////////////////////////////////
+}
+
+namespace fsm
+{
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline state_machine<Event, Id>::state_base::state_base(Id id)
+    : state_machine<Event, Id>::state_base_basic(id)
+{
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::state_base::jump_to_state(Id id) const
+{
+    state_base<Event, Id>::get_owner().jump_to_state(id);
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::state_base::jump_to_state_with_event(Id id, Event const & event) const
+{
+    state_base<Event, Id>::get_owner().jump_to_state_with_event(id, Event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
