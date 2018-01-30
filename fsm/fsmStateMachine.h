@@ -5,8 +5,6 @@
 #ifndef FSM_STATE_MACHINE_H__DDK
 #define FSM_STATE_MACHINE_H__DDK
 
-#include "fsmStateBaseBasic.h"
-
 #include <map>
 #include <cassert>
 
@@ -17,9 +15,32 @@ namespace fsm
     class state_machine
     {
         public:
+            class state_base_basic
+            {
+                public:
+                    explicit state_base_basic(Id id);
+                    virtual ~state_base_basic();
+
+                    virtual void on_entering();
+                    virtual void on_exiting();
+                    virtual void on_event(Event const & event) = 0;
+
+                    Id get_id() const;
+
+                    void set_owner(state_machine & owner);
+
+                protected:
+                    state_machine & get_owner() const;
+
+                private:
+                    Id m_id;
+                    state_machine * m_owner;
+            };
+
+        public:
             state_machine();
 
-            void register_state(state_base_basic<Event, Id> & state);
+            void register_state(state_base_basic & state);
 
             void set_initial_state(Id id);
 
@@ -29,14 +50,63 @@ namespace fsm
             void handle_event(Event const & event);
 
         private:
-            typedef std::map<Id, state_base_basic<Event, Id> *> states_map;
+            typedef std::map<Id, state_base_basic *> states_map;
 
         private:
             states_map m_states_map;
-            state_base_basic<Event, Id> * m_active_state;
+            state_base_basic * m_active_state;
     };
 }
 
+
+namespace fsm
+{
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline state_machine<Event, Id>::state_base_basic::state_base_basic(Id id)
+    : m_id(id)
+    , m_owner(0)
+{
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline state_machine<Event, Id>::state_base_basic::~state_base_basic()
+{
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::state_base_basic::on_entering()
+{
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::state_base_basic::on_exiting()
+{
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline Id state_machine<Event, Id>::state_base_basic::get_id() const
+{
+    return m_id;
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline void state_machine<Event, Id>::state_base_basic::set_owner(state_machine & owner)
+{
+    assert(m_owner == 0);
+
+    m_owner = &owner;
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename Event, typename Id>
+inline state_machine<Event, Id> & state_machine<Event, Id>::state_base_basic::get_owner() const
+{
+    assert(m_owner != 0);
+
+    return *m_owner;
+}
+////////////////////////////////////////////////////////////////////////////////
+}
 
 namespace fsm
 {
@@ -48,7 +118,7 @@ inline state_machine<Event, Id>::state_machine()
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event, typename Id>
-inline void state_machine<Event, Id>::register_state(state_base_basic<Event, Id> & state)
+inline void state_machine<Event, Id>::register_state(state_base_basic & state)
 {
     Id state_id = state.get_id();
 

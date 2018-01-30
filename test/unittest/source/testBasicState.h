@@ -1,7 +1,7 @@
 #ifndef TEST_BASIC_STATE_H__DDK
 #define TEST_BASIC_STATE_H__DDK
 
-#include "fsm/fsmStateBaseBasic.h"
+#include "fsm/fsmStateMachine.h"
 
 #include "testEvent.h"
 
@@ -11,7 +11,7 @@
 namespace test
 {
     class BasicState
-      : public fsm::state_base_basic<test::Event, int>
+      : public fsm::state_machine<test::Event, int>::state_base_basic
     {
         public:
             typedef std::vector<test::Event> events_t;
@@ -24,7 +24,7 @@ namespace test
 
             virtual void on_event(test::Event const & event);
 
-            using fsm::state_base_basic<test::Event, int>::get_owner;
+            using fsm::state_machine<test::Event, int>::state_base_basic::get_owner;
 
             bool was_on_entering_called() const;
             bool was_on_exiting_called() const;

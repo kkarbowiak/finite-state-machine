@@ -151,7 +151,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\fsm\fsmStateBase.h" />
-    <ClInclude Include="..\..\fsm\fsmStateBaseBasic.h" />
     <ClInclude Include="..\..\fsm\fsmStateMachine.h" />
     <ClInclude Include="catch\catch.hpp" />
     <ClInclude Include="source\testBasicState.h" />
