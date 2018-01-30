@@ -11,7 +11,7 @@
 namespace test
 {
     class State
-      : public fsm::state_base<test::EventBase>
+      : public fsm::state_base<test::EventBase, int>
     {
         public:
             typedef std::vector<int> events_t;
@@ -26,8 +26,8 @@ namespace test
 
             void on_event_base(int value);
 
-            using fsm::state_base<test::EventBase>::jump_to_state;
-            using fsm::state_base<test::EventBase>::jump_to_state_with_event;
+            using fsm::state_base<test::EventBase, int>::jump_to_state;
+            using fsm::state_base<test::EventBase, int>::jump_to_state_with_event;
 
             bool was_on_entering_called() const;
             bool was_on_exiting_called() const;

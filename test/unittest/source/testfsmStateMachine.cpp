@@ -10,7 +10,7 @@ TEST_CASE("Tests state_machine::register_state() function", "[fsm][state_machine
 {
     const int id = 1;
     test::BasicState state(id);
-    fsm::state_machine<test::Event> state_machine;
+    fsm::state_machine<test::Event, int> state_machine;
 
     state_machine.register_state(state);
 
@@ -25,7 +25,7 @@ TEST_CASE("Tests state_machine::set_initial_state() function", "[fsm][state_mach
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::state_machine<test::Event> state_machine;
+    fsm::state_machine<test::Event, int> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
@@ -46,7 +46,7 @@ TEST_CASE("Tests state_machine::jump_to_state() function", "[fsm][state_machine]
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::state_machine<test::Event> state_machine;
+    fsm::state_machine<test::Event, int> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
@@ -89,7 +89,7 @@ TEST_CASE("Tests state_machine::jump_to_state_with_event() function", "[fsm][sta
     const int id_two = 2;
     test::BasicState state_one(id_one);
     test::BasicState state_two(id_two);
-    fsm::state_machine<test::Event> state_machine;
+    fsm::state_machine<test::Event, int> state_machine;
 
     state_machine.register_state(state_one);
     state_machine.register_state(state_two);
@@ -137,7 +137,7 @@ TEST_CASE("Tests state_machine::handle_event() function", "[fsm][state_machine][
 {
     const int id = 1;
     test::BasicState state(id);
-    fsm::state_machine<test::Event> state_machine;
+    fsm::state_machine<test::Event, int> state_machine;
 
     state_machine.register_state(state);
     state_machine.set_initial_state(state.get_id());
