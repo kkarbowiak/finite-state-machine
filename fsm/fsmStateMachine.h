@@ -13,7 +13,7 @@
 
 namespace fsm
 {
-    template<typename Event, typename Id = int>
+    template<typename Event, typename Id>
     class state_machine
     {
         public:

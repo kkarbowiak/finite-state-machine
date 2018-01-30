@@ -11,7 +11,7 @@
 
 namespace fsm
 {
-    template<typename Event, typename Id = int>
+    template<typename Event, typename Id>
     class state_base
       : public state_base_basic<Event, Id>
     {
