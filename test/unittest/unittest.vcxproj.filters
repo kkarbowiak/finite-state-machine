@@ -21,9 +21,6 @@
     <ClInclude Include="catch\catch.hpp">
       <Filter>catch</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fsm\fsmStateBase.h">
-      <Filter>fsm</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\fsm\fsmStateMachine.h">
       <Filter>fsm</Filter>
     </ClInclude>
