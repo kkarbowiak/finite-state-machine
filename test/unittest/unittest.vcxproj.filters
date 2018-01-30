@@ -24,9 +24,6 @@
     <ClInclude Include="..\..\fsm\fsmStateBase.h">
       <Filter>fsm</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\fsm\fsmStateBaseBasic.h">
-      <Filter>fsm</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\fsm\fsmStateMachine.h">
       <Filter>fsm</Filter>
     </ClInclude>

@@ -5,7 +5,6 @@
 #ifndef FSM_STATE_BASE_H__DDK
 #define FSM_STATE_BASE_H__DDK
 
-#include "fsmStateBaseBasic.h"
 #include "fsmStateMachine.h"
 
 
@@ -13,7 +12,7 @@ namespace fsm
 {
     template<typename Event, typename Id>
     class state_base
-      : public state_base_basic<Event, Id>
+      : public state_machine<Event, Id>::state_base_basic
     {
         public:
             explicit state_base(Id id);
@@ -30,7 +29,7 @@ namespace fsm
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event, typename Id>
 inline state_base<Event, Id>::state_base(Id id)
-  : state_base_basic<Event, Id>(id)
+  : state_machine<Event, Id>::state_base_basic(id)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
