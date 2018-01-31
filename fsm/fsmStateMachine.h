@@ -131,13 +131,13 @@ inline state_machine<Event, Id>::state_base::state_base(Id id)
 template<typename Event, typename Id>
 inline void state_machine<Event, Id>::state_base::jump_to_state(Id id) const
 {
-    state_base<Event, Id>::get_owner().jump_to_state(id);
+    state_base::get_owner().jump_to_state(id);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename Event, typename Id>
 inline void state_machine<Event, Id>::state_base::jump_to_state_with_event(Id id, Event const & event) const
 {
-    state_base<Event, Id>::get_owner().jump_to_state_with_event(id, Event);
+    state_base::get_owner().jump_to_state_with_event(id, event);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
